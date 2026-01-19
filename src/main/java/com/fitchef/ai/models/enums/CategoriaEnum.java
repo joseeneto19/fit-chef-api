@@ -1,0 +1,25 @@
+package com.fitchef.ai.models.enums;
+
+public enum CategoriaEnum {
+    VEGETAIS,
+    FRUTAS,
+    CARNES,
+    AVES,
+    PEIXES_E_FRUTOS_DO_MAR,
+    OVOS,
+    LATICINIOS,
+    LEGUMINOSAS,
+    CEREAIS_E_GRAOS,
+    MASSAS,
+    PAES_E_BOLOS,
+    OLEAGINOSAS,
+    SEMENTES,
+    TEMPEROS_E_ERVAS,
+    MOLHOS_E_CONDIMENTOS,
+    BEBIDAS,
+    DOCES_E_SOBREMESAS,
+    INDUSTRIALIZADOS,
+    CONGELADOS,
+    SUPLEMENTOS,
+    OUTROS
+}
