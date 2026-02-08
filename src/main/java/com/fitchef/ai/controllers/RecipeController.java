@@ -15,8 +15,10 @@ public class RecipeController {
         this.service = service;
     }
 
-    @GetMapping
+    @GetMapping("/generate")
     public Mono<ResponseEntity<String>> generateRecipe() {
-        return service.generateRecipe();
+        return service.generateRecipe()
+                .map(recipe -> ResponseEntity.ok(recipe))
+                .defaultIfEmpty(ResponseEntity.noContent().build());
     }
 }
