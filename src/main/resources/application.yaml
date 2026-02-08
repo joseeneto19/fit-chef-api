@@ -16,3 +16,8 @@ spring:
     console:
       enabled: true
       path: /console
+
+  chatgpt:
+    api:
+      url: chatgpt.api.url:https://api.openai.com/v1/responses
+      key: ${API.KEY}
