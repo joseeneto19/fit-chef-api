@@ -1,5 +1,6 @@
 package com.fitchef.ai.services;
 
+import com.fitchef.ai.models.FoodItem;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import reactor.core.publisher.Mono;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ChatGptService {
@@ -36,9 +38,16 @@ public class ChatGptService {
         return key;
     }
 
-    public Mono<String> generateRecipe() {
-        String prompt = "Me sugira uma receita simples com ingredientes comuns, porém sou diabético. " +
-                "Inclua quantidades aproximadas e modo de preparo. Evite açúcar e farinha branca.";
+    public Mono<String> generateRecipe(List<FoodItem> ingredientes) {
+
+
+        String alimentos = ingredientes.stream()
+                .map(item -> String.format("%s (%s) - Quantidade: %d, Validade: %s", item.getNome()
+                ,item.getCategoria(), item.getQuantidade(), item.getValidade()))
+                .collect(Collectors.joining("\n"));
+
+        String prompt = "Baseado no meu banco de dados faça uma receita, caso venha algum alimento" +
+                "não fitness, troque o alimento por algo pareçido: " +alimentos;
 
         Map<String, Object> requestBody = Map.of(
                 "model", "gpt-4o-mini",
